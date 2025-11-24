@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Users</h2>
+
+<h3>Create new user</h3>
+<form method="post" action="/users/html">
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Given name: <input type="text" name="given_name" required></label><br>
+    <label>Surname: <input type="text" name="surname" required></label><br>
+    <label>City: <input type="text" name="city"></label><br>
+    <label>Phone: <input type="text" name="phone_number"></label><br>
+    <label>Description: <input type="text" name="profile_description"></label><br>
+    <label>Password: <input type="password" name="password" required></label><br>
+    <button type="submit">Create</button>
+</form>
+
+<hr>
+
+<h3>Existing users</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Phone</th>
+    </tr>
+    {% for u in users %}
+    <tr>
+        <td>{{ u.user_id }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.given_name }} {{ u.surname }}</td>
+        <td>{{ u.city or "" }}</td>
+        <td>{{ u.phone_number or "" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

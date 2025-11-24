@@ -1,0 +1,52 @@
+cat > app/templates/jobs.html << 'EOF'
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Jobs</h2>
+
+<h3>Create Job</h3>
+<form method="post" action="/jobs/html">
+    <label>Member (User ID):
+        <select name="member_user_id">
+            {% for m in members %}
+            <option value="{{ m.member_user_id }}">{{ m.member_user_id }}</option>
+            {% endfor %}
+        </select>
+    </label><br>
+
+    <label>Caregiving Type:
+        <input type="text" name="required_caregiving_type" required>
+    </label><br>
+
+    <label>Other Requirements:
+        <input type="text" name="other_requirements">
+    </label><br>
+
+    <label>Date Posted:
+        <input type="date" name="date_posted" required>
+    </label><br>
+
+    <button type="submit">Create Job</button>
+</form>
+
+<hr>
+
+<h3>Existing Jobs</h3>
+<table border="1" cellpadding="5">
+    <tr>
+        <th>ID</th>
+        <th>Member User ID</th>
+        <th>Type</th>
+        <th>Date</th>
+    </tr>
+    {% for j in jobs %}
+    <tr>
+        <td>{{ j.job_id }}</td>
+        <td>{{ j.member_user_id }}</td>
+        <td>{{ j.required_caregiving_type }}</td>
+        <td>{{ j.date_posted }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+EOF
