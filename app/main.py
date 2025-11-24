@@ -3,7 +3,6 @@
 from typing import List
 
 from fastapi import FastAPI, Depends, HTTPException, status, Request, Form
-from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 
@@ -17,7 +16,6 @@ app = FastAPI(title="Caregivers Platform - CRUD App")
 
 
 templates = Jinja2Templates(directory="app/templates")
-app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
 
